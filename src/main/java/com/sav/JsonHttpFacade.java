@@ -11,14 +11,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+
 @RequiredArgsConstructor
-public class JsonHttpFacade <T>{
-    HttpClient client = HttpClient.newBuilder().build();
-    ObjectMapper mapper = new ObjectMapper();
+public class JsonHttpFacade{
+    private final HttpClient client = HttpClient.newBuilder().build();
+    private final ObjectMapper mapper = new ObjectMapper();
 
-
-
-    public T get(String uri, Class<T> responseClass) {
+    public<T> T get(String uri, Class<T> responseClass) {
         HttpRequest  request = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .GET()
@@ -45,7 +44,7 @@ public class JsonHttpFacade <T>{
     }
 
 
-    public T post (String uri, Object body,Class<T> responseClass) {
+    public <T> T post (String uri, Object body,Class<T> responseClass) {
         HttpRequest request=null;
 
         try {
@@ -77,7 +76,7 @@ public class JsonHttpFacade <T>{
     }
 
 
-    public T getAuthorized (String uri, Class<T> responseClass, String token) {
+    public <T> T getAuthorized (String uri, Class<T> responseClass, String token) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .GET()
@@ -103,7 +102,7 @@ public class JsonHttpFacade <T>{
         return response;
     }
 
-    public T postAuthorized (String uri, Object body,Class<T> responseClass, String token) {
+    public <T> T postAuthorized (String uri, Object body,Class<T> responseClass, String token) {
         HttpRequest request=null;
 
         try {

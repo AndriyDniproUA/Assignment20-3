@@ -10,7 +10,7 @@ public class Main {
 
         String uri = "https://mag-contacts-api.herokuapp.com/users";
 
-        GetUsersResponse resp = (GetUsersResponse) jsonHttp.get(uri, GetUsersResponse.class);
+        GetUsersResponse resp =  jsonHttp.get(uri, GetUsersResponse.class);
 
         System.out.println(resp.getStatus());
         for (GetUsersResponse.User user : resp.getUsers()) {
